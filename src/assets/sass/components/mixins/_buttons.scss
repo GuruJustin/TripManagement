@@ -1,0 +1,336 @@
+//
+// Custom button variation
+//
+
+
+@mixin button-custom-variant(
+    $background, $border, $color, $icon, $box-shadow,
+    $hover-background, $hover-border, $hover-color, $hover-icon, $hover-box-shadow,
+    $active-background, $active-border, $active-color, $active-icon, $active-box-shadow) {
+
+    // Initial state
+    @if ($color != null) {
+        color: $color;
+    }
+
+    @if ($icon != null) {
+        i {
+    		color: $icon;
+    	}
+
+    	.svg-icon {
+    		@include svg-icon-color($icon);
+    	}
+
+        &.dropdown-toggle:after {
+            color: $icon;
+        }
+    }
+
+    @if ($background != null) {
+        background-color: $background;
+    }
+
+    @if ($border != null) {
+        border-color: $border;
+    }
+
+    // Hover & focus state
+    @if ($hover-color != null or $hover-border != null or $hover-icon != null or $hover-background != null) {
+        &:hover:not(.btn-text):not(:disabled):not(.disabled),
+        &:focus:not(.btn-text),
+        &.focus:not(.btn-text) {
+            @if ($hover-color != null) {
+                color: $hover-color;
+            }
+
+            @if ($hover-icon != null) {
+                i {
+            		color: $hover-icon;
+            	}
+
+            	.svg-icon {
+            		@include svg-icon-color($hover-icon);
+            	}
+
+                &.dropdown-toggle:after {
+                    color: $hover-icon;
+                }
+            }
+
+            @if ($hover-background != null) {
+                background-color: $hover-background;
+            }
+
+            @if ($hover-border != null) {
+                border-color: $hover-border;
+            }
+        }
+    }
+
+    // Disabled state
+    @if ($color != null or $icon != null or $border != null or $background != null) {
+        // Disabled comes first so active can properly restyle
+        &.disabled,
+        &:disabled {
+            @if ($color != null) {
+                color: $color;
+            }
+
+            @if ($icon != null) {
+                i {
+            		color: $icon;
+            	}
+
+            	.svg-icon {
+            		@include svg-icon-color($icon);
+            	}
+
+                &.dropdown-toggle:after {
+                    color: $icon;
+                }
+            }
+
+            @if ($background != null) {
+                background-color: $background;
+            }
+
+            @if ($border != null) {
+                border-color: $border;
+            }
+        }
+    }
+
+    // Active state
+    @if ($active-color != null or $active-icon != null or $active-border != null or $active-background != null) {
+        &:not(:disabled):not(.disabled):active:not(.btn-text),
+        &:not(:disabled):not(.disabled).active,
+        .show > &.dropdown-toggle,
+        .show &.btn-dropdown {
+            @if ($active-color != null) {
+                color: $active-color;
+            }
+
+            @if ($active-icon != null) {
+                i {
+            		color: $active-icon;
+            	}
+
+            	.svg-icon {
+            		@include svg-icon-color($active-icon);
+            	}
+
+                &.dropdown-toggle:after {
+                    color: $active-icon;
+                }
+            }
+
+            @if ($active-background != null) {
+                background-color: $active-background;
+            }
+
+            @if ($active-border != null) {
+                border-color: $active-border;
+            }
+
+            // Focus state
+            &:focus {
+
+            }
+        }
+    }
+
+    // Box shadow
+    @if ($box-shadow != null) {
+        box-shadow: $box-shadow;
+    }
+
+    @if ($hover-box-shadow != null) {
+        &:hover:not(.btn-text):not(:disabled):not(.disabled),
+        &:focus:not(.btn-text),
+        &.focus:not(.btn-text) {
+            box-shadow: $hover-box-shadow;
+        }
+    }
+
+    @if ($active-box-shadow != null) {
+        &:not(:disabled):not(.disabled):active:not(.btn-text),
+        &:not(:disabled):not(.disabled).active,
+        .show > &.dropdown-toggle {
+            box-shadow: $active-box-shadow;
+        }
+    }
+}
+
+
+@mixin button-custom-transition($transition) {
+    // Initial state
+    transition: $transition;
+
+    i {
+        transition: $transition;
+    }
+
+    // Hover & focus state
+    &:hover:not(.btn-text),
+    &:focus:not(.btn-text),
+    &.focus {
+        transition: $transition;
+
+        i {
+            transition: $transition;
+        }
+    }
+
+    // Disabled state
+    &.disabled,
+    &:disabled {
+        transition: $transition;
+
+        i {
+            transition: $transition;
+        }
+    }
+
+    // Active state
+    &:not(:disabled):not(.disabled):active:not(.btn-text),
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+        transition: $transition;
+
+        i {
+            transition: $transition;
+        }
+    }
+}
+
+
+
+.btn-sample{
+    height: 35px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.27);
+    background-color: #ffffff;
+    .drop-icon {
+        font-family: HelveticaNeue;
+        font-size: 13px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #575762;
+        padding-right : 15px;
+        padding-left : 15px;
+    }
+    margin-right : 20px;
+}
+
+.btn-sample:hover{
+    background-color: #12ad00;
+    .drop-icon {
+        color: white;
+    }
+    .upload-icon {
+        color: white;
+    }
+    .angle-icon{
+        color: white;
+    }
+}
+.btn-sample-activate{
+    background-color: #12ad00;
+    .drop-icon {
+        color: white;
+    }
+    .upload-icon {
+        color: white;
+    }
+    .angle-icon{
+        color: white;
+    }
+}
+
+
+.SubTitle-tools {
+    display : flex; 
+    flex-direction:  row;
+    justify-content: space-between;
+    align-items: center;
+    height : 85px;
+    padding-left : 20px;
+    .SubTitle-title {
+        font-size : 26px;
+        font-weight: bold;
+        color : #2e2e39;
+    }
+    
+    .SubTitle-Btns {
+        display : flex; 
+        flex-direction:  row;
+    }
+}
+
+
+.page-header {
+    display : flex;
+    justify-content : space-between;
+    height : 94px;
+    align-items:center;
+    .page-title{
+        span:first-child {
+            font-size : 20px;
+            color : #333;
+        }
+        span:last-child {
+            font-size : 25px;
+            font-weight : bold
+        }
+    }
+    .btn-verify {
+        width : 222px;
+        height : 54px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.27);
+        border-radius: 3px;
+        display : flex;
+        flex-direction : row;
+        align-items : center;
+        justify-content : space-between ;
+        cursor:pointer;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .btn-verified {
+            display : flex;
+            flex-direction : column;
+            .btn-profile{
+                font-size :13px;
+                color :#15151b;
+            }
+            .btn-verify-text {
+                font-size :15px;
+                font-weight : bold;
+                color : #05b32b;
+                margin-left : -25px;
+            }
+        }
+        .drop-icon {
+            font-family: HelveticaNeue;
+            font-size: 13px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #575762;
+            padding-right : 15px;
+            padding-left : 15px;
+        }
+    }
+}
